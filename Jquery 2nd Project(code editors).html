@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2</title>
+    <script src="jquery-3.7.1.js"></script>
+
+    <style type="text/css">
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(97, 104, 163);
+}
+#header{
+    background-color: #EEE;
+    height: 30px;
+    padding: 2px;
+}
+#logo{
+    font-weight: bold;
+    float: left;
+    padding: 5px;
+}
+#buttons{
+    margin:0 auto;
+    width:300px ;
+    
+   
+}
+.togglebutton{
+    float: left;
+    border: 1px solid #AAA;
+    padding: 5px;
+    border-right: none;
+    background-color: #CCC;
+}
+.togglebutton:hover{
+    cursor: default;
+}
+#Output{
+    border-right: 0.5px solid #AAA;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    
+}
+
+#Html{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.active{
+    background-color:rgb(144, 223, 155) ;
+}
+.actives{
+    background-color: brown;
+}
+
+.highlight{
+    background-color:rgb(228, 235, 238) ;
+}
+
+
+
+
+
+
+.hidden{
+    display:none ;
+}
+.hiddens{
+    display: none;
+}
+
+
+
+
+
+.panel{
+    float: left;
+}
+iframe{
+    border: none;
+    
+}
+textarea{
+    border-top: none;
+   background-color: darkblue;
+    color: aliceblue;
+    font-weight:bold ;
+    font-size: x-large;
+    padding: 9px;
+    
+}
+
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div id="logo">
+            CodePlayer
+        </div>
+        <div id="buttons">
+            <div class="togglebutton active " id="Html">Html</div>
+            <div class="togglebutton " id="CSS">CSS</div>
+            <div class="togglebutton" id="JavaScript">Javascript</div>
+            <div class="togglebutton active" id="Output">Output</div>
+        </div>
+    </div>
+
+    <div id="bodycontainer">
+        <textarea class="panel" id="htmlpanel"><p>Hello World</p></textarea>
+        <textarea class="panel hidden" id="csspanel">p{color: red;}</textarea>
+        <textarea class="panel hiddens" id="javascriptpanel">console.log("hello");</textarea>
+        <iframe class="panel" id="outputpanel"></iframe>
+    </div>
+
+
+
+<script>
+
+ 
+$(".togglebutton").hover(function(){
+    $(this).addClass("highlight");
+},function(){
+    $(this).removeClass("highlight");
+});
+
+$(".togglebutton").click(function(){
+    $(this).toggleClass("active");
+    $(this).toggleClass("highlight");
+   
+});
+
+
+
+$(".panel").height($(window).height()-$("#header").height()-15);
+$(".panel").width(($(window).width()/4)-15);
+
+
+
+
+
+
+
+
+$("#CSS").click(function(){
+    $(".hidden").show("id")
+        
+    });
+    $("#JavaScript").click(function(){
+    $(".hiddens").show("id")
+        
+    });
+
+
+
+
+    function outputpanel(){
+        $("iframe").contents().find("html").html("<html><head><style >" + $("#csspanel").val() + "</style><body>" + $("#htmlpanel").val() + "</body></head></html>");
+   
+         eval($("#javascriptpanel").val())
+   
+   
+    }
+
+
+$("textarea").on('change keyup paste', function() {
+    //$("iframe").contents().find("html").html($("#htmlpanel").val());
+//$("iframe").contents().find("html").html("<html><head><style >" + $("#csspanel").val() + "</style><body>" + $("#htmlpanel").val() + "</body></head></html>");
+    // your code here
+    outputpanel();
+});
+outputpanel();
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
